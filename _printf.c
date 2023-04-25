@@ -47,8 +47,6 @@ int _printf(const char *format, ...)
 				len = len + 2;
 			}
 
-			if (specifier == 'd')
-			{
 
 		}
 		_putchar(format[len]);

@@ -13,6 +13,7 @@ int _printf(const char *format, ...)
 {
 	int len = 0;
 	int i;
+	int y = 0;
 	va_list ap;
 	char specifier;
 	char *str_to_print;
@@ -29,6 +30,7 @@ int _printf(const char *format, ...)
 			{
 				_putchar(va_arg(ap, int));
 				len = len + 2;
+				y++;
 			}
 
 			if (specifier == 's')
@@ -37,6 +39,7 @@ int _printf(const char *format, ...)
 				for (i = 0; str_to_print[i] != '\0'; i++)
 				{
 					_putchar(str_to_print[i]);
+					y++;
 				}
 				len += 2;
 			}
@@ -45,13 +48,15 @@ int _printf(const char *format, ...)
 			{
 				_putchar('%');
 				len = len + 2;
+				y++;
 			}
 
 
 		}
 		_putchar(format[len]);
 		len++;
+		y++;
 	}
 	va_end(ap);
-	return (len);
+	return (y);
 }

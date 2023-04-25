@@ -2,6 +2,41 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+/**
+ * print_char - print a char to stdout
+ * @pos: current position within the string being printed
+ * @char_to_print: character to print
+ * Return: length of the character
+ */
+int print_char(int *pos, int char_to_print)
+{
+	int length = 0;
+
+	_putchar(char_to_print);
+	*pos = *pos + 2;
+	length = 1;
+	return (length);
+}
+
+/**
+ * print_str - print a char to stdout
+ * @pos: current position within the string being printed
+ * @str_to_print: string to print
+ * Return: length of the string printed
+ */
+int print_str(int *pos, char *str_to_print)
+{
+	int i;
+	int len = 0;
+
+	for (i = 0; str_to_print[i] != '\0'; i++)
+	{
+		_putchar(str_to_print[i]);
+		len++;
+	}
+	*pos = *pos + 2;
+	return (len);
+}
 
 /**
  * _printf - prints to stdout format
@@ -11,52 +46,36 @@
 
 int _printf(const char *format, ...)
 {
+	int *pos_p;
+	int pos = 0;
 	int len = 0;
-	int i;
-	int y = 0;
 	va_list ap;
 	char specifier;
-	char *str_to_print;
 
 	va_start(ap, format);
+	pos_p = &pos;
 
-	while (format[len] != '\0')
+	while (format[pos] != '\0')
 	{
-		if (format[len] == '%')
+		if (format[pos] == '%')
 		{
-			specifier = format[len + 1];
+			specifier = format[pos + 1];
 
 			if (specifier == 'c')
-			{
-				_putchar(va_arg(ap, int));
-				len = len + 2;
-				y++;
-			}
-
+				len += print_char(pos_p, va_arg(ap, int));
 			if (specifier == 's')
-			{
-				str_to_print = va_arg(ap, char *);
-				for (i = 0; str_to_print[i] != '\0'; i++)
-				{
-					_putchar(str_to_print[i]);
-					y++;
-				}
-				len += 2;
-			}
-			
+				len += print_str(pos_p, va_arg(ap, char *));
 			if (specifier == '%')
-			{
-				_putchar('%');
-				len = len + 2;
-				y++;
-			}
-
-
+				len += print_char(pos_p, '%');
+			if (specifier == 'i' || specifier == 'd')
+				len += print_number(pos_p, va_arg(ap, int));
+			if (specifier == 'b')
+				len += print_binary(pos_p, va_arg(ap, int));
 		}
-		_putchar(format[len]);
+		_putchar(format[pos]);
+		pos++;
 		len++;
-		y++;
 	}
 	va_end(ap);
-	return (y);
+	return (len);
 }

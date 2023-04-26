@@ -31,13 +31,11 @@ int print_binary(int *pos, int number)
 			num = num / 2;
 			i++;
 		}
-		printf("i is %d\n", i);
 		for (; i < 32; i++)
 		{
 			binary_reversed[i] = num_to_char(1);
 		}
 
-		printf("i is %d\n", i);
 		len = 32;
 	}
 
@@ -62,7 +60,6 @@ int print_binary(int *pos, int number)
 		len = 1;
 	}
 
-	printf("i is %d\n", i);
 	i--;
 	for (; i >= 0; i--)
 	{

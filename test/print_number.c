@@ -1,39 +1,17 @@
 #include <stdlib.h>
 #include "main.h"
 /**
- * num_to_char - converts given integer to corresponding ascii decimal char
- * @num: integer to convert to char
- * Return: corresponing ascii decimal char
- */
-
-int num_to_char(int num)
-{
-	int ascii_num_dec = 48;
-	int ascii_num = 0;
-
-	while (ascii_num_dec < 58)
-	{
-		if (ascii_num == num)
-		{
-			return (ascii_num_dec);
-		}
-		ascii_num_dec++;
-		ascii_num++;
-	}
-	return (48);
-}
-/**
  * print_number - prints the number supplied on screen
  * @pos: current position in the larger string
  * @number: number to print
  * Return: length of number printed
  */
 
-int print_number(int *pos, int number)
+int print_number(int *pos, long int number)
 {
 	int len = 0;
 	int i, ascii_dec;
-	int num = (number < 0) ? number * -1 : number;
+	long int num = (number < 0) ? number * -1 : number;
 	char *reverse_num;
 
 	while ((num / 10 != 0) && num > 9)
@@ -45,6 +23,11 @@ int print_number(int *pos, int number)
 	len += 1;
 	num = (number < 0) ? number * -1 : number;
 	reverse_num = malloc(sizeof(char) * len);
+	if (reverse_num == NULL)
+	{
+		free(reverse_num);
+		return (0);
+	}
 
 	for (i = 0; i < len; i++)
 	{

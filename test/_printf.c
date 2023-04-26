@@ -47,8 +47,7 @@ int print_str(int *pos, char *str_to_print)
 int _printf(const char *format, ...)
 {
 	int *pos_p;
-	int pos = 0;
-	int len = 0;
+	int pos, len = 0;
 	va_list ap;
 	char specifier;
 
@@ -62,15 +61,30 @@ int _printf(const char *format, ...)
 			specifier = format[pos + 1];
 
 			if (specifier == 'c')
+			{
 				len += print_char(pos_p, va_arg(ap, int));
+				continue;
+			}
 			if (specifier == 's')
+			{
 				len += print_str(pos_p, va_arg(ap, char *));
+				continue;
+			}
 			if (specifier == '%')
+			{
 				len += print_char(pos_p, '%');
+				continue;
+			}
 			if (specifier == 'i' || specifier == 'd')
+			{
 				len += print_number(pos_p, va_arg(ap, int));
+				continue;
+			}
 			if (specifier == 'b')
+			{
 				len += print_binary(pos_p, va_arg(ap, int));
+				continue;
+			}
 		}
 		_putchar(format[pos]);
 		pos++;

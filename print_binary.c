@@ -24,6 +24,8 @@ int print_binary(int *pos, int number)
 	if (number < 0)
 	{
 		binary_reversed = malloc(sizeof(char) * 32);
+		if (binary_reversed == NULL)
+			return (1);
 		num = number * -1;
 		while (num > 0)
 		{
@@ -42,6 +44,8 @@ int print_binary(int *pos, int number)
 	if (number > 0)
 	{
 		binary_reversed = malloc(sizeof(char) * len);
+		if (binary_reversed == NULL)
+			return (1);
 		num = number;
 
 		while (num > 0)
@@ -55,6 +59,8 @@ int print_binary(int *pos, int number)
 	if (number == 0)
 	{
 		binary_reversed = malloc(sizeof(char) * 1);
+		if (binary_reversed == NULL)
+			return (1);
 		binary_reversed[0] = num_to_char(0);
 		i = 1;
 		len = 1;

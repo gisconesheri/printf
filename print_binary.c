@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
+#include <stdio.h>
 /**
  * print_binary - converts number into binary format
  * @number: an unsigned int to be converted
@@ -7,10 +8,10 @@
  * Return: length of the binary printed out
  */
 
-int print_binary(int *pos, unsigned int number)
+int print_binary(int *pos, int number)
 {
 	char *binary_reversed;
-	int num = number;
+	int num = number < 0 ? number * -1 : number;
 	int len = 0;
 	int i = 0;
 
@@ -20,16 +21,48 @@ int print_binary(int *pos, unsigned int number)
 		len++;
 	}
 
-	num = number;
-	binary_reversed = malloc(sizeof(char) * len);
-
-	while (num > 0)
+	if (number < 0)
 	{
-		binary_reversed[i] = num_to_char(num % 2);
-		num = num / 2;
-		i++;
+		binary_reversed = malloc(sizeof(char) * 32);
+		num = number * -1;
+		while (num > 0)
+		{
+			binary_reversed[i] = num_to_char(num % 2);
+			num = num / 2;
+			i++;
+		}
+		printf("i is %d\n", i);
+		for (; i < 32; i++)
+		{
+			binary_reversed[i] = num_to_char(1);
+		}
+
+		printf("i is %d\n", i);
+		len = 32;
 	}
 
+	if (number > 0)
+	{
+		binary_reversed = malloc(sizeof(char) * len);
+		num = number;
+
+		while (num > 0)
+		{
+			binary_reversed[i] = num_to_char(num % 2);
+			num = num / 2;
+			i++;
+		}
+	}
+
+	if (number == 0)
+	{
+		binary_reversed = malloc(sizeof(char) * 1);
+		binary_reversed[0] = num_to_char(0);
+		i = 1;
+		len = 1;
+	}
+
+	printf("i is %d\n", i);
 	i--;
 	for (; i >= 0; i--)
 	{
@@ -37,5 +70,6 @@ int print_binary(int *pos, unsigned int number)
 	}
 	*pos = *pos + 2;
 	free(binary_reversed);
+
 	return (len);
 }

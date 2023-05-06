@@ -1,17 +1,24 @@
 #include <stdio.h>
-#include "main.h"
 #include <stdlib.h>
+#include "main.h"
 
+/**
+ *  * main - Entry point
+ *   *
+ *    * Return: 0 on success, error code otherwise
+ *     */
 int main(void)
 {
-	int len1, len2;
+		int len, len2;
 
-	len1 = _printf("%b\n", 1024);
-	len2 = printf("0");
-
-	printf("len1 is %d len2 is %d\n", len1, len2);
-
-	fflush(stdout);
-
-	return (0);
+			len = _printf("Complete the sentence: You %s nothing, Jon Snow.\n", (char *)0);
+				len2 = printf("Complete the sentence: You %s nothing, Jon Snow.\n", (char *)0);
+					fflush(stdout);
+						if (len != len2)
+								{
+											printf("Lengths differ.\n");
+													fflush(stdout);
+															return (1);
+																}
+							return (0);
 }

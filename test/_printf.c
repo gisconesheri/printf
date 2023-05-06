@@ -17,10 +17,16 @@ int _printf(const char *format, ...)
 
 	va_start(ap, format);
 	pos_p = &pos;
+
+	for(; format[len] != '\0'; len++)
+		;
 	
 	if (format == NULL)
 		return (-1);
+	if (len == 1 && format[0] == '%')
+		return (-1);
 
+	len = 0;
 	while (format[pos] != '\0')
 	{
 		if (format[pos] == '%')

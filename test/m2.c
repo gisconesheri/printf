@@ -11,8 +11,8 @@ int main(void)
 {
 		int len, len2;
 
-			len = _printf("%u - %u = %u\n", 2048, 1024, 1024);
-				len2 = printf("%u - %u = %u\n", 2048, 1024, 1024);
+			len = _printf("%o", 1024);
+				len2 = printf("%o", 1024);
 					fflush(stdout);
 						if (len != len2)
 								{

@@ -13,13 +13,14 @@ char *get_octal_positive(long int n)
 	int len, i;
 
 	len = i = 0;
-	while (num % 8 != 0)
+	while (num > 8)
 	{
 		len++;
 		num = num / 8;
 	}
 
-	rev_octal = malloc(sizeof(char) * len);
+	len += 1;
+	rev_octal = malloc(sizeof(char) * len + 1);
 	if (rev_octal == NULL)
 		return (NULL);
 	num = n;
@@ -29,6 +30,7 @@ char *get_octal_positive(long int n)
 		rev_octal[i] = num_to_char(num % 8);
 		num = num / 8;
 	}
+	rev_octal[len] = '\0';
 	return (rev_octal);
 }
 /**
@@ -79,22 +81,17 @@ char *get_octal_negative(long int n)
  */
 int print_octal(int *pos, long int n)
 {
-	char *octal_reversed;
+	char *octal_reversed = "";
 	int len = 0;
 	int i = 0;
 
 	if (n < 0)
-	{
 		octal_reversed = get_octal_negative(n);
-	}
 	else
 		octal_reversed = get_octal_positive(n);
 
 	if (octal_reversed == NULL)
-	{
-		printf("IS NULL");
 		return (0);
-	}
 
 	while (octal_reversed[len] != '\0')
 	{

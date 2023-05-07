@@ -11,7 +11,8 @@
 int _printf(const char *format, ...)
 {
 	int *pos_p;
-	int pos, len = 0;
+	int len = 0;
+	int pos = 0;
 	va_list ap;
 	char specifier;
 

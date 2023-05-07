@@ -52,6 +52,17 @@ int _printf(const char *format, ...)
 				len += print_binary(pos_p, va_arg(ap, int));
 				continue;
 			}
+			if (specifier == 'u')
+			{
+				len += print_unsigned(pos_p, va_arg(ap, long int));
+				continue;
+			}
+			if (specifier == 'o')
+			{
+				printf("calling print_octal\n");
+				len += print_octal(pos_p, va_arg(ap, long int));
+				continue;
+			}
 		}
 		_putchar(format[pos]);
 		pos++;

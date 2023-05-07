@@ -17,12 +17,12 @@ int _printf(const char *format, ...)
 
 	va_start(ap, format);
 	pos_p = &pos;
+
+	for(; format[len] != '\0'; len++)
+		;
+	
 	if (format == NULL)
 		return (-1);
-
-	for (; format[len] != '\0'; len++)
-		;
-
 	if (len == 1 && format[0] == '%')
 		return (-1);
 
@@ -56,6 +56,16 @@ int _printf(const char *format, ...)
 			if (specifier == 'b')
 			{
 				len += print_binary(pos_p, va_arg(ap, int));
+				continue;
+			}
+			if (specifier == 'u')
+			{
+				len += print_unsigned(pos_p, va_arg(ap, long int));
+				continue;
+			}
+			if (specifier == 'o')
+			{
+				len += print_octal(pos_p, va_arg(ap, long int));
 				continue;
 			}
 		}

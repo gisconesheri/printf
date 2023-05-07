@@ -1,12 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
 
+/**
+ *  * main - Entry point
+ *   *
+ *    * Return: 0 on success, error code otherwise
+ *     */
 int main(void)
 {
-	int n = 2;
+		int len, len2;
 
-	_printf("%o", -1024);
-	_putchar('\n');
-	print_octal(&n, 1024);
-
-	return (0);
+			len = _printf("%u - %u = %u\n", 2048, 1024, 1024);
+				len2 = printf("%u - %u = %u\n", 2048, 1024, 1024);
+					fflush(stdout);
+						if (len != len2)
+								{
+											printf("Lengths differ.\n");
+													fflush(stdout);
+															return (1);
+																}
+							return (0);
 }

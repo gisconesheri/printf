@@ -65,7 +65,6 @@ int _printf(const char *format, ...)
 			}
 			if (specifier == 'o')
 			{
-				printf("calling print_octal\n");
 				len += print_octal(pos_p, va_arg(ap, long int));
 				continue;
 			}
